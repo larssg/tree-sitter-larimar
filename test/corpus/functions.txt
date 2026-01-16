@@ -1,0 +1,101 @@
+================================================================================
+Simple function definition
+================================================================================
+
+def greet
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    name: (identifier)))
+
+================================================================================
+Function with parameters
+================================================================================
+
+def add(a: Int, b: Int) -> Int
+  a + b
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameters
+      (parameter name: (identifier) type: (type_identifier))
+      (parameter name: (identifier) type: (type_identifier)))
+    return_type: (type_identifier)
+    (expression_statement
+      (binary_expression (identifier) (identifier)))))
+
+================================================================================
+Generic function
+================================================================================
+
+def identity[T](x: T) -> T
+  x
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (type_parameters
+      (type_parameter name: (type_identifier)))
+    (parameters
+      (parameter name: (identifier) type: (type_identifier)))
+    return_type: (type_identifier)
+    (expression_statement (identifier))))
+
+================================================================================
+Function with default parameter
+================================================================================
+
+def greet(name: String, msg: String = "Hello")
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameters
+      (parameter name: (identifier) type: (type_identifier))
+      (parameter name: (identifier) type: (type_identifier) default: (string_literal)))))
+
+================================================================================
+Inline function
+================================================================================
+
+inline def square(x: Int) -> Int
+  x * x
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameters
+      (parameter name: (identifier) type: (type_identifier)))
+    return_type: (type_identifier)
+    (expression_statement
+      (binary_expression (identifier) (identifier)))))
+
+================================================================================
+Private function
+================================================================================
+
+private def helper
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (visibility_modifier)
+    name: (identifier)))

@@ -1,0 +1,78 @@
+================================================================================
+Integer literals
+================================================================================
+
+42
+-10
+0x1F
+0o77
+0b1010
+1_000_000
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression_statement (integer_literal))
+  (expression_statement (unary_expression (integer_literal)))
+  (expression_statement (integer_literal))
+  (expression_statement (integer_literal))
+  (expression_statement (integer_literal))
+  (expression_statement (integer_literal)))
+
+================================================================================
+Float literals
+================================================================================
+
+3.14
+1.0e10
+2.5E-3
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression_statement (float_literal))
+  (expression_statement (float_literal))
+  (expression_statement (float_literal)))
+
+================================================================================
+String literals
+================================================================================
+
+"hello"
+"hello, world!"
+"escape: \n\t\\"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression_statement (string_literal))
+  (expression_statement (string_literal))
+  (expression_statement (string_literal (escape_sequence) (escape_sequence) (escape_sequence))))
+
+================================================================================
+Boolean and None literals
+================================================================================
+
+true
+false
+None
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression_statement (boolean_literal))
+  (expression_statement (boolean_literal))
+  (expression_statement (none_literal)))
+
+================================================================================
+Character literals
+================================================================================
+
+'a'
+'\n'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression_statement (char_literal))
+  (expression_statement (char_literal (escape_sequence))))

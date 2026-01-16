@@ -1,0 +1,70 @@
+================================================================================
+For loop
+================================================================================
+
+for i in 1..10
+  puts i
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (for_expression
+    pattern: (binding_pattern (identifier))
+    iterator: (range_expression (integer_literal) (integer_literal))
+    (expression_statement
+      (call_expression
+        function: (identifier)
+        arguments: (arguments (argument (identifier)))))))
+
+================================================================================
+While loop
+================================================================================
+
+while condition
+  work()
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (while_expression
+    condition: (identifier)
+    (expression_statement
+      (call_expression
+        function: (identifier)
+        arguments: (arguments)))))
+
+================================================================================
+Until loop
+================================================================================
+
+until done
+  work()
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (until_expression
+    condition: (identifier)
+    (expression_statement
+      (call_expression
+        function: (identifier)
+        arguments: (arguments)))))
+
+================================================================================
+Loop expression
+================================================================================
+
+loop
+  if done then break end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (loop_expression
+    (if_expression
+      condition: (identifier)
+      (break_statement))))

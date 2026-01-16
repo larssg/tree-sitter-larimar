@@ -1,0 +1,144 @@
+================================================================================
+Struct definition
+================================================================================
+
+struct Point
+  x: Int
+  y: Int
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (type_identifier)
+    (struct_field name: (identifier) type: (type_identifier))
+    (struct_field name: (identifier) type: (type_identifier))))
+
+================================================================================
+Class definition
+================================================================================
+
+class Animal
+  def initialize(@name: String)
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    name: (type_identifier)
+    (method_definition
+      name: (identifier)
+      (parameters
+        (parameter name: (identifier) type: (type_identifier))))))
+
+================================================================================
+Class with inheritance
+================================================================================
+
+class Dog < Animal
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    name: (type_identifier)
+    superclass: (type_identifier)))
+
+================================================================================
+Enum definition
+================================================================================
+
+enum Color
+  Red
+  Green
+  Blue
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_definition
+    name: (type_identifier)
+    (enum_variant name: (type_identifier))
+    (enum_variant name: (type_identifier))
+    (enum_variant name: (type_identifier))))
+
+================================================================================
+Enum with associated data
+================================================================================
+
+enum Option[T]
+  Some(T)
+  None
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_definition
+    name: (type_identifier)
+    (type_parameters
+      (type_parameter name: (type_identifier)))
+    (enum_variant name: (type_identifier) (type_identifier))
+    (enum_variant name: (type_identifier))))
+
+================================================================================
+Trait definition
+================================================================================
+
+trait Display
+  def to_s -> String
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (trait_definition
+    name: (type_identifier)
+    (trait_method
+      name: (identifier)
+      return_type: (type_identifier))))
+
+================================================================================
+Impl block
+================================================================================
+
+impl Display for Point
+  def to_s -> String
+    "point"
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (impl_block
+    trait: (type_identifier)
+    type: (type_identifier)
+    (method_definition
+      name: (identifier)
+      return_type: (type_identifier)
+      (expression_statement (string_literal)))))
+
+================================================================================
+Type alias
+================================================================================
+
+type UserId = Int
+type Pair[T] = (T, T)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_alias
+    name: (type_identifier)
+    type: (type_identifier))
+  (type_alias
+    name: (type_identifier)
+    (type_parameters
+      (type_parameter name: (type_identifier)))
+    type: (tuple_type (type_identifier) (type_identifier))))

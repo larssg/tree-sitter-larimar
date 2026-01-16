@@ -1,0 +1,94 @@
+================================================================================
+If expression
+================================================================================
+
+if x > 0
+  "positive"
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_expression
+    condition: (binary_expression (identifier) (integer_literal))
+    (expression_statement (string_literal))))
+
+================================================================================
+If-elsif-else
+================================================================================
+
+if x > 0
+  "positive"
+elsif x < 0
+  "negative"
+else
+  "zero"
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_expression
+    condition: (binary_expression (identifier) (integer_literal))
+    (expression_statement (string_literal))
+    (elsif_clause
+      condition: (binary_expression (identifier) (integer_literal))
+      (expression_statement (string_literal)))
+    (else_clause
+      (expression_statement (string_literal)))))
+
+================================================================================
+If with then
+================================================================================
+
+if x > 0 then "pos" else "neg" end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_expression
+    condition: (binary_expression (identifier) (integer_literal))
+    (expression_statement (string_literal))
+    (else_clause
+      (expression_statement (string_literal)))))
+
+================================================================================
+Unless expression
+================================================================================
+
+unless done
+  work()
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (unless_expression
+    condition: (identifier)
+    (expression_statement
+      (call_expression
+        function: (identifier)
+        arguments: (arguments)))))
+
+================================================================================
+Match expression
+================================================================================
+
+match value
+  Some(x) => x
+  None => 0
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (match_expression
+    value: (identifier)
+    (match_arm
+      pattern: (enum_pattern
+        variant: (type_identifier)
+        (binding_pattern (identifier)))
+      body: (identifier))
+    (match_arm
+      pattern: (literal_pattern (none_literal))
+      body: (integer_literal))))
