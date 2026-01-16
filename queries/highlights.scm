@@ -43,7 +43,6 @@
 ; Control flow statements
 "return" @keyword.return
 "break" @keyword.return
-"continue" @keyword.return
 
 ; Async
 "spawn" @keyword.coroutine
