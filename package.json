@@ -4,7 +4,7 @@
   "description": "Larimar grammar for tree-sitter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/tree-sitter-larimar"
+    "url": "https://github.com/larssg/tree-sitter-larimar"
   },
   "license": "MIT",
   "main": "bindings/node",
