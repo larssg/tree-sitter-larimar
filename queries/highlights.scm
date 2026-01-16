@@ -106,8 +106,8 @@
 
 (identifier) @variable
 
-(self) @variable.builtin
-(super) @variable.builtin
+"self" @variable.builtin
+"super" @variable.builtin
 
 (instance_variable) @variable.member
 
