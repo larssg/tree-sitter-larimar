@@ -93,10 +93,7 @@
 (function_definition
   name: (identifier) @function)
 
-; Function calls - match identifier as first child of call_expression
-(call_expression
-  (identifier) @function.call)
-
+; Method calls
 (method_call
   method: (identifier) @function.method.call)
 
