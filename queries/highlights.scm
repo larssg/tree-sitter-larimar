@@ -17,115 +17,74 @@
 (char) @string
 (escape_sequence) @string.escape
 
-(interpolation
-  "#{" @punctuation.special
-  "}" @punctuation.special)
+(interpolation) @punctuation.special
 
 (boolean) @constant.builtin
-"None" @constant.builtin
 
 ; ============================================
 ; KEYWORDS
 ; ============================================
 
 ; Control flow
-[
-  "if"
-  "elsif"
-  "else"
-  "unless"
-  "then"
-  "match"
-  "end"
-] @keyword.conditional
+"if" @keyword.conditional
+"elsif" @keyword.conditional
+"else" @keyword.conditional
+"unless" @keyword.conditional
+"then" @keyword.conditional
+"match" @keyword.conditional
+"end" @keyword.conditional
 
 ; Loops
-[
-  "for"
-  "in"
-  "while"
-  "loop"
-] @keyword.repeat
+"for" @keyword.repeat
+"in" @keyword.repeat
+"while" @keyword.repeat
+"loop" @keyword.repeat
 
-; Control flow
-[
-  "return"
-  "break"
-  "continue"
-] @keyword.return
+; Control flow statements
+"return" @keyword.return
+"break" @keyword.return
+"continue" @keyword.return
 
 ; Async
-[
-  "spawn"
-  "await"
-  "async"
-] @keyword.coroutine
+"spawn" @keyword.coroutine
+"await" @keyword.coroutine
+"async" @keyword.coroutine
 
 ; Imports
 "use" @keyword.import
 
-; Other keywords
-[
-  "as"
-] @keyword
-
 ; Logical operators as keywords
-[
-  "and"
-  "or"
-  "not"
-] @keyword.operator
+"and" @keyword.operator
+"or" @keyword.operator
+"not" @keyword.operator
 
 ; Definition keywords
 "def" @keyword.function
 
 ; Type definition keywords
-[
-  "struct"
-  "class"
-  "enum"
-  "trait"
-  "impl"
-  "module"
-  "type"
-] @keyword.type
+"struct" @keyword.type
+"class" @keyword.type
+"enum" @keyword.type
+"trait" @keyword.type
+"impl" @keyword.type
+"module" @keyword.type
+"type" @keyword.type
 
 ; Storage modifiers
-[
-  "let"
-  "mut"
-  "inline"
-] @keyword.modifier
+"let" @keyword.modifier
+"mut" @keyword.modifier
+"inline" @keyword.modifier
 
 ; Visibility
-[
-  "pub"
-  "private"
-  "protected"
-] @keyword.modifier
+"pub" @keyword.modifier
+"private" @keyword.modifier
+"protected" @keyword.modifier
 
 ; ============================================
 ; TYPES
 ; ============================================
 
 (type_identifier) @type
-
-(generic_type
-  (type_identifier) @type)
-
-"Self" @type.builtin
-"Never" @type.builtin
-
-; Built-in types
-((type_identifier) @type.builtin
-  (#any-of? @type.builtin
-    "Int" "Float" "String" "Bool" "Char"
-    "Array" "Hash" "Option" "Result"
-    "Any" "Fn"))
-
-; Type parameters
-(type_parameter
-  name: (type_identifier) @type.parameter)
 
 ; ============================================
 ; FUNCTIONS AND METHODS
@@ -137,24 +96,10 @@
 
 ; Function calls
 (call_expression
-  function: (expression
-    (primary_expression
-      (identifier) @function.call)))
+  function: (identifier) @function.call)
 
 (method_call
   method: (identifier) @function.method.call)
-
-; Built-in functions
-((identifier) @function.builtin
-  (#any-of? @function.builtin
-    "puts" "print" "gets" "panic" "assert"))
-
-; Some/Ok/Err
-[
-  "Some"
-  "Ok"
-  "Err"
-] @function.builtin
 
 ; ============================================
 ; VARIABLES
@@ -162,8 +107,8 @@
 
 (identifier) @variable
 
-"self" @variable.builtin
-"super" @variable.builtin
+(self) @variable.builtin
+(super) @variable.builtin
 
 (instance_variable) @variable.member
 
@@ -171,95 +116,15 @@
 (parameter
   name: (identifier) @variable.parameter)
 
-(parameter
-  name: (instance_variable) @variable.parameter)
-
 (block_params
   (identifier) @variable.parameter)
-
-; ============================================
-; OPERATORS
-; ============================================
-
-[
-  "+"
-  "-"
-  "*"
-  "/"
-  "%"
-] @operator
-
-[
-  "=="
-  "!="
-  "<"
-  "<="
-  ">"
-  ">="
-] @operator
-
-[
-  "&&"
-  "||"
-  "!"
-] @operator
-
-[
-  "|>"
-] @operator
-
-[
-  ".."
-  "..."
-] @operator
-
-[
-  "->"
-  "=>"
-] @operator
-
-[
-  "="
-] @operator
-
-[
-  "::"
-] @operator
-
-[
-  "|"
-  "&"
-] @operator
 
 ; ============================================
 ; PUNCTUATION
 ; ============================================
 
-[
-  "("
-  ")"
-] @punctuation.bracket
-
-[
-  "["
-  "]"
-] @punctuation.bracket
-
-[
-  "{"
-  "}"
-] @punctuation.bracket
-
-[
-  ","
-  "."
-  ":"
-  ";"
-] @punctuation.delimiter
-
-; Block parameter pipes
-(block_params
-  "|" @punctuation.bracket)
+["(" ")" "[" "]" "{" "}"] @punctuation.bracket
+["," "." ":" ";"] @punctuation.delimiter
 
 ; ============================================
 ; DEFINITIONS
@@ -279,9 +144,6 @@
   name: (type_identifier) @type.definition)
 
 (module_definition
-  name: (type_identifier) @module)
-
-(type_alias
   name: (type_identifier) @type.definition)
 
 ; Enum variants
@@ -295,9 +157,6 @@
 (field_init
   name: (identifier) @property)
 
-(field_pattern
-  (identifier) @property)
-
 ; ============================================
 ; PATTERNS
 ; ============================================
@@ -306,20 +165,3 @@
 
 (typed_pattern
   (identifier) @variable)
-
-; ============================================
-; PATH EXPRESSIONS
-; ============================================
-
-(path_expression
-  (type_identifier) @type)
-
-; Hash entries
-(hash_entry
-  "=>" @operator)
-
-; ============================================
-; ERRORS
-; ============================================
-
-(ERROR) @error
