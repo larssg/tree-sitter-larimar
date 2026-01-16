@@ -93,9 +93,9 @@
 (function_definition
   name: (identifier) @function)
 
-; Function calls
+; Function calls - match identifier as first child of call_expression
 (call_expression
-  function: (identifier) @function.call)
+  (identifier) @function.call)
 
 (method_call
   method: (identifier) @function.method.call)
